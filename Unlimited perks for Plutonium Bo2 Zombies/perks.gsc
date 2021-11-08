@@ -1,16 +1,17 @@
-#include maps\mp\_utility;
-#include common_scripts\utility;
-#include maps\mp\gametypes_zm\_hud_util;
-#include maps\mp\gametypes_zm\_hud_message;
-
 init()
 {
-    level.perk_purchase_limit = 9;
+    thread remove_perk_limit();
     for(;;)
     {
         level waittill("connected", player);
         player thread welcome();
     }
+}
+
+remove_perk_limit()
+{
+    level waittill( "start_of_round" );
+    level.perk_purchase_limit = 9;
 }
 
 welcome()
