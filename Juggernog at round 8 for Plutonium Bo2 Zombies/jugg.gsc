@@ -8,16 +8,17 @@ init()
     for(;;)
     {
         level waittill("connected", player);
-        player thread welcome();
+        player thread onplayerspawned();
     }
 }
 
-welcome()
+onplayerspawned()
 {
   if ( level.round_number > 7 )
     {
+        self waittill("spawned_player");
         if (isDefined(level.zombiemode_using_juggernaut_perk) && level.zombiemode_using_juggernaut_perk)
-         self doGivePerk("specialty_armorvest");
+        self doGivePerk("specialty_armorvest");
 		self iprintln("You got Juggernaut");
      }
 }
